@@ -1,16 +1,21 @@
 version: "3"
 services:
   node:
-    image: node:13.8
+    image: node:12.16
     user: "node"
+    build: .
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
-    volumes:
-      - ./node/.:/home/node/app
+    depends_on: 
+      - db
+    # volumes:
+    #   - ./node:/home/node/app
     expose:
       - "8888"
-    command: "npm start"
+    command: bash -c
+      "npm install
+      && npm start"
   db:
     image: postgres:12.2
     restart: always
@@ -18,9 +23,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
-    depends_on: 
-      - node
     volumes: 
       - ./pgdata:/home/postgres/postgresql/data
     ports: 
       - '5432:5432'
+    expose: 
+      - "5432"
