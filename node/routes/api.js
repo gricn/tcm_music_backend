@@ -1,22 +1,21 @@
-const app = require('express')
-const router = require('express').Router()
+const apiRoutes = require('express').Router()
 const db = require('../db')
-const request = require('request')
 const fetch = require('node-fetch')
 
-router.get('/', async (req, res) => {
+
+apiRoutes.get('/', async (req, res) => {
   try {
-    const { rows } = await db.query('select * from test')
+    const { rows } = await db.query('select * from musiclist')
     res.send(rows)
   } catch (e) {
     console.log(e)
   }
 })
 
-router.get('/:id', async (req, res) => {
+apiRoutes.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
-    const { rows } = await db.query("SELECT * FROM test WHERE id = $1", [id])
+    const { rows } = await db.query("SELECT * FROM musiclist WHERE num = $1", [id])
     res.send(rows)
   }
   catch (e) {
@@ -24,12 +23,12 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-
-router.get('/song/:id', async (req, res) => {
+// const port = 2333
+apiRoutes.get('/song/:id', async (req, res) => {
   let url = ""
   try {
     const { id } = req.params
-    url = "http://localhost:3000/song/url?id=" + id
+    url = "http://localhost:2333/song/url?id=" + id
   }
   catch (e) {
     console.log(e)
@@ -41,13 +40,14 @@ router.get('/song/:id', async (req, res) => {
   }
 })
 
- //   /api/poster/
+//   /apiRoutes/poster/
 
- router.get('/poster/:id', async (req, res) => {
+apiRoutes.get('/poster/:id', async (req, res) => {
   let url = ""
   try {
     const { id } = req.params
-    url = "http://localhost:3000/song/detail?ids=" + id
+    // url = "http://localhost:" + port + "/song/url?id=" + id
+    url = "http://localhost:2333/song/detail?ids=" + id
   }
   catch (e) {
     console.log(e)
@@ -55,9 +55,10 @@ router.get('/song/:id', async (req, res) => {
     fetch(url)
       .then(res => res.json())
       .then(json => res.send(json.songs[0].al.picUrl))
+      .error(err => console.log(err))
     // console.log(res.)
   }
 })
 
 
-module.exports = router
+module.exports = apiRoutes

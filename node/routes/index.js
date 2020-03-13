@@ -1,8 +1,8 @@
 // ./routes/index.js
-const api = require('./api')
-// const public = require('./public')
+const apiRoutes = require('./api')
+const loginRoutes = require('./login')
 module.exports = app => {
-  app.use('/api', api)
-  // app.use('/public', public)
+  app.use('/api', apiRoutes)
+  app.use('/login', loginRoutes)
   // etc..
 }

@@ -1,1 +1,10 @@
-./pgdata/
+.vscode/
+node/db/config.json
+node/node_modules/
+node/npm-debug.log
+node/nohup.out
+node/routes/getOpenidConfig.json
+
+node/package-lock.json
+
+npm-debug.log
