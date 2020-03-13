@@ -2,7 +2,7 @@ const { Client } = require('pg');
 const client = new Client({
     user: "postgres",
     password: "postgres",
-    host: "db",
+    host: "localhost",
     port: 5432,
     database: "postgres",
 })
@@ -13,7 +13,7 @@ async function execute() {
     try {
         await client.connect()
         console.log("connect successfully")
-        await client.query("create table ")
+        // await client.query("create table ")
         const results = await client.query("select * from test")
         console.table(results.rows)
         await client.end()
