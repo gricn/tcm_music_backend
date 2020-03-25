@@ -91,10 +91,10 @@ create table musiclist(
 ### frequencyList(data type)
 create type frequencylist as enum('never','seldom','somtimes','often','always')
 
-### testdetail(table)  -- redesign
+### testdetail(table) 
 create table testdetail(
 	num				serial,			
-	openid    		text				primary key,			
+	openid    		text				primary key,	
 	test_times		smallint,
 	t1_1				frequencyList,
 	t1_2				frequencyList,			
@@ -176,13 +176,25 @@ create table userinfo(
 	gender			genderSelect,
 	age				smallint,
 	province_id		varchar(12)
-)
+);
 
-### musiclistenrecord(table)  -- redesign
+### musiclistenrecord(table)
 create table musiclistenrecord(
 	openid    		text				primary key	references userinfo(openid),
 	music_id		varchar(15) 		references musiclist(music_id),
 	listen_times	smallint
 );
 
+## 致谢
+本项目使用的开源项目包括：
 
+- [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) - MIT
+- [antv/f2](https://github.com/antvis/f2) -  MIT
+- [colorUI](https://github.com/weilanwl/ColorUI) - MIT
+- [weui-miniprogram](https://github.com/wechat-miniprogram/weui-miniprogram) - MIT
+- [china_regions](https://github.com/wecatch/china_regions) - Apache 2.0
+
+直接使用的代码包括
+- 省市三级联动: [如何实现一个自定义数据版省市区三级联动](https://developers.weixin.qq.com/community/develop/article/doc/0000643f674fa81a18a92b37455413)
+
+我们计划在校级创新项目结束后（2021.04.01）按照MIT协议发布开源代码
