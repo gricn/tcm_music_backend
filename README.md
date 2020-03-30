@@ -1,4 +1,15 @@
-## API 说明
+## 前端开发页面需求
+
+如果修改请在文档说明
+
+- [X] 首页 
+- [X] 音乐播放
+- [ ] 用户注册	（添加表单、Post方法）
+- [ ] 调查问卷	（当前小程序test文件夹，直接按钮比一个个选择题目然后滑动选项效率更高）
+- [ ] 数据统计	（F2移动端数据可视化）
+
+
+## API 说明 （日后可能会将4000端口用子域名包装一下）
 
 ### 调取五音音乐歌单
 
@@ -20,7 +31,7 @@
 ### 获取歌曲url
 
 - URL: `https://www.gricn.top:4000/api/song/[params]`
-- params类型：JSON：  网易云音乐歌曲URL & 专辑海报 URL
+- params类型：网易云音乐歌曲id
 - 返回值： URL
 
 比如：获取《木音(角声)》的URL
@@ -53,9 +64,14 @@ URL: `https://www.gricn.top:4000/api/poster/167272`
 
 ### 微信小程序openid获取
 
-- URL: "https://www.gricn.top:4000/login/[params]"
+- URL: `https://www.gricn.top:4000/login/[params]`
 - params类型： 微信小程序获取的code
 - 备注：在服务器记录用户的登录状态
+
+### 微信小程序用户注册
+- URL: `https://www.gricn.top:4000/register/[params]`
+- params类型： 微信小程序获取的code
+- 备注：传递微信小程序POST发送的用户数据
 
 ----
 
