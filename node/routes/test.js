@@ -1,11 +1,11 @@
 const express = require('express')
 // const app = express()
-const registerRoutes = express.Router()
+const test = express.Router()
 const db = require('../db')
 
 
 
-registerRoutes.post('/', async (req, res) => {
+test.post('/', async (req, res) => {
     try {
         console.log(req.body)
         res.send("hello!")
@@ -16,4 +16,4 @@ registerRoutes.post('/', async (req, res) => {
 })
 
 
-module.exports = registerRoutes
+module.exports = test
