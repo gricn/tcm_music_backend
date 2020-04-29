@@ -11,12 +11,10 @@ app.use(bodyParser.urlencoded(
     { extended: true }
 ))
 
-
 mountRoutes(app)
 
 app.use(logger);
 app.use('/public', express.static('public'))
-
 
 
 // app listen 

@@ -4,21 +4,19 @@
 
 - [X] 首页 
 - [X] 音乐播放
-- [ ] 用户注册	（添加表单、Post方法）
-- [ ] 调查问卷	（当前小程序test文件夹，直接按钮比一个个选择题目然后滑动选项效率更高）
+- [X] 用户注册	（添加表单、Post方法）
+- [X] 调查问卷	（当前小程序test文件夹，直接按钮比一个个选择题目然后滑动选项效率更高）
 - [ ] 数据统计	（F2移动端数据可视化）
 
 
 ## API 说明 （日后可能会将4000端口用子域名包装一下）
 
 ### 调取五音音乐歌单
-
 - URL: `https://www.gricn.top:4000/public/[params].json`
 - params类型：可从右边列表中选取一个值[jue, zhi, gong, shang, yu]
 - 返回类型：JSON {music_name(string), music_author(string), music_id(string)}
 
 比如，调取角歌单（jue）：
-
 - URL: `https://www.gricn.top:4000/public/jue.json`
 - 返回值：
 
@@ -29,54 +27,52 @@
 },{...},...,{...}]
 
 ### 获取歌曲url
-
 - URL: `https://www.gricn.top:4000/api/song/[params]`
 - params类型：网易云音乐歌曲id
 - 返回值： URL
 
-比如：获取《木音(角声)》的URL
-
-URL: `https://www.gricn.top:4000/api/song/167272`
+比如：获取《木音(角声)》的URL:
+- URL: `https://www.gricn.top:4000/api/song/167272`
 
 ### 获取专辑图片
-
 - URL: `https://www.gricn.top:4000/api/poster/[params]`
 - 参数类型: 网易云音乐歌曲id
 - 返回值：URL
 
-比如：获取获取《木音(角声)》的专辑图片
-
-URL: `https://www.gricn.top:4000/api/poster/167272`
+比如：获取获取《木音(角声)》的专辑图片:
+- URL: `https://www.gricn.top:4000/api/poster/167272`
 
 ### 获取测验简略情况（参数待定）
-
 - URL: `https://www.gricn.top:4000/api/test/default/[params]`
 - params类型：[用户id，openid]
 - 返回值：JSON
 - 备注：用户id要在服务器和openid合并检验
 
-### 获取测验详细情况（参数待定）
-
+## 获取测验详细情况（参数待定）
 - URL: `https://www.gricn.top:4000/api/test/details/[params]`
 - params类型： [用户id，openid]
 - 返回值：JSON
 - 备注：用户id要在服务器和openid合并检验
 
 ### 微信小程序openid获取
-
-- URL: `https://www.gricn.top:4000/login/[params]`
+- URL: `https://www.gricn.top:4000/getopenid/[params]`
 - params类型： 微信小程序获取的code
-- 备注：在服务器记录用户的登录状态
+- 备注：获取用户的openid并返还给小程序端
 
-### 微信小程序用户注册
+### 判断用户注册情况
+- URL: `https://www.gricn.top:4000/isregistered/[params]`
+- params类型： 微信小程序缓存中获取的openid
+- 返回值：Boolean (True为已注册，False为未注册)
+- 备注：返还Boolean值给小程序端
+
+### 用户注册
 - URL: `https://www.gricn.top:4000/register/[params]`
-- params类型： 微信小程序获取的code
-- 备注：传递微信小程序POST发送的用户数据
+- params类型： 微信小程序缓存中获取的openid
+- 备注：POST方法
 
 ----
 
 ## 数据库表单
-
 ### login(table)
  create table login(
      no serial,
@@ -96,7 +92,7 @@ URL: `https://www.gricn.top:4000/api/poster/167272`
 ### wuyin(data type)
 create type wuyin as enum('jue','zhi','gong','shang','yu','others')
 
-### test(table)
+### musiclist(table)
 create table musiclist(
 	num				smallserial,		 
 	music_type		wuyin,
@@ -104,92 +100,23 @@ create table musiclist(
 	music_name		text,
 );
 
-### frequencyList(data type)
-create type frequencylist as enum('never','seldom','somtimes','often','always')
+<!-- ### frequencyList(data type)
+create type frequencylist as enum(0,1,2,3,4); -->
 
 ### testdetail(table) 
-create table testdetail(
-	num				serial,			
-	openid    		text				primary key,	
+create table testdetail(		
+	openid    		text				not null,	
 	test_times		smallint,
-	t1_1				frequencyList,
-	t1_2				frequencyList,			
-	t1_3				frequencyList,
-	t1_4				frequencyList,
-	t1_5				frequencyList,
-	t1_6				frequencyList,
-	t1_7				frequencyList,
-	t2_1				frequencyList,
-	t2_2				frequencyList,
-	t2_3				frequencyList,
-	t2_4				frequencyList,
-	t2_5				frequencyList,
-	t2_6				frequencyList,
-	t2_7				frequencyList,
-	t2_8				frequencyList,
-	t3_1				frequencyList,
-	t3_2				frequencyList,
-	t3_3				frequencyList,
-	t3_4				frequencyList,
-	t3_5				frequencyList,
-	t3_6				frequencyList,
-	t3_7				frequencyList,
-	t3_8				frequencyList,
-	t4_1				frequencyList,
-	t4_2				frequencyList,
-	t4_3				frequencyList,
-	t4_4				frequencyList,
-	t4_5				frequencyList,
-	t4_6				frequencyList,
-	t4_7				frequencyList,
-	t4_8				frequencyList,
-	t5_1				frequencyList,
-	t5_2				frequencyList,
-	t5_3				frequencyList,
-	t5_4				frequencyList,
-	t5_5				frequencyList,
-	t5_6				frequencyList,
-	t5_7				frequencyList,
-	t6_1				frequencyList,
-	t6_2				frequencyList,
-	t6_3				frequencyList,
-	t6_4				frequencyList,
-	t6_5				frequencyList,
-	t6_6				frequencyList,
-	t6_7				frequencyList,
-	t7_1				frequencyList,
-	t7_2				frequencyList,
-	t7_3				frequencyList,
-	t7_4				frequencyList,
-	t7_5				frequencyList,
-	t7_6				frequencyList,
-	t7_7				frequencyList,
-	t8_1				frequencyList,
-	t8_2				frequencyList,
-	t8_3				frequencyList,
-	t8_4				frequencyList,
-	t8_5				frequencyList,
-	t8_6				frequencyList,
-	t8_7				frequencyList,
-	t9_1				frequencyList,
-	t9_2				frequencyList,
-	t9_3				frequencyList,
-	t9_4				frequencyList,
-	t9_5				frequencyList,
-	t9_6				frequencyList,
-	t9_7				frequencyList,
-	t9_8				frequencyList,
-	-- 67 question total
-	test_score		smallint
+	question_id		text,
+	question_value	smallint
+	-- 67 questions total
 );
-
-### genderselect(data type)
-create type genderselect as enum('0','1','2')  -- 0:others; 1:male; 2:female
 
 ### userInfo(table)
 create table userinfo(
-	openid    		text,
-	gender			genderSelect,
+	num		serial,
+	openid    		text 		primary key,
+	gender			Boolean, 	-- male:true; female:false
 	age				smallint,
 	province_id		varchar(12)
 );

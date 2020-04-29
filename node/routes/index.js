@@ -1,14 +1,16 @@
 // ./routes/index.js
-const apiRoutes = require('./api')
-const loginRoutes = require('./login')
-const registerRoutes = require('./register')
+const api = require('./api')
+const getopenid = require('./getopenid')
+const register = require('./register')
 const test = require('./test')
+const isregistered = require('./isregistered')
 
 
 module.exports = app => {
-  app.use('/api', apiRoutes)
-  app.use('/login', loginRoutes)
-  app.use('/register',registerRoutes)
+  app.use('/api', api)
+  app.use('/getopenid', getopenid)
+  app.use('/register',register)
   app.use('/test',test)
+  app.use('/isregistered',isregistered)
   // etc..
 }

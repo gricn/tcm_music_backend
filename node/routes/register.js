@@ -1,14 +1,14 @@
 const express = require('express')
-// const app = express()
-const registerRoutes = express.Router()
+const register = express.Router()
 const db = require('../db')
 
 
 
-registerRoutes.post('/', async (req, res) => {
+register.post('/', async (req, res) => {
     try {
-        console.log(req.body)
-        res.send("hello!")
+        const reqBody = req.body
+        await db.query('insert into userinfo(openid, gender,age,province_id)\
+         values ($1,$2,$3,$4)',[reqBody.openid, reqBody.gender, reqBody.age, reqBody.location])
     } catch (e) {
         console.log(e)
     }
@@ -16,4 +16,4 @@ registerRoutes.post('/', async (req, res) => {
 })
 
 
-module.exports = registerRoutes
+module.exports = register

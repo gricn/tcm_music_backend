@@ -1,9 +1,9 @@
-const loginRoutes = require('express').Router()
+const getopenid = require('express').Router()
 const fetch = require('node-fetch')
 const db = require('../db')
 const config = require('./getOpenidConfig.json')
 
-loginRoutes.get('/:code', async (req, res) => {
+getopenid.get('/:code', async (req, res) => {
 	let url = ""
 	let temp = { value: "" }
 
@@ -58,4 +58,4 @@ loginRoutes.get('/:code', async (req, res) => {
 })
 
 
-module.exports = loginRoutes
+module.exports = getopenid

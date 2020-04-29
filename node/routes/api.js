@@ -1,9 +1,9 @@
-const apiRoutes = require('express').Router()
+const api = require('express').Router()
 const db = require('../db')
 const fetch = require('node-fetch')
 
 
-apiRoutes.get('/', async (req, res) => {
+api.get('/', async (req, res) => {
   try {
     const { rows } = await db.query('select * from musiclist')
     res.send(rows)
@@ -12,7 +12,7 @@ apiRoutes.get('/', async (req, res) => {
   }
 })
 
-apiRoutes.get('/:id', async (req, res) => {
+api.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const { rows } = await db.query("SELECT * FROM musiclist WHERE num = $1", [id])
@@ -24,7 +24,7 @@ apiRoutes.get('/:id', async (req, res) => {
 })
 
 // const port = 2333
-apiRoutes.get('/song/:id', async (req, res) => {
+api.get('/song/:id', async (req, res) => {
   let url = ""
   try {
     const { id } = req.params
@@ -40,9 +40,9 @@ apiRoutes.get('/song/:id', async (req, res) => {
   }
 })
 
-//   /apiRoutes/poster/
+//   /api/poster/
 
-apiRoutes.get('/poster/:id', async (req, res) => {
+api.get('/poster/:id', async (req, res) => {
   let url = ""
   try {
     const { id } = req.params
@@ -61,4 +61,4 @@ apiRoutes.get('/poster/:id', async (req, res) => {
 })
 
 
-module.exports = apiRoutes
+module.exports = api
