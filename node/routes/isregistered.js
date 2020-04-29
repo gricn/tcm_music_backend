@@ -6,9 +6,11 @@ const db = require('../db')
 
 isregistered.get('/:id', async (req, res) => {
     try {
-        const { id } = req.params
-        const {rows} = db.query('select count(openid) from userinfo where openid = $1', [id])
-        console.log('result:' + JSON.stringify(rows))
+        
+        const id  = req.params.id
+        console.log(id)
+        const {rows} = await db.query('select count(openid) from userinfo where openid = $1', [id])
+        // console.log('result:' + JSON.stringify(rows))
         if (rows[0])
             res.send(true)
         else

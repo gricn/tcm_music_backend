@@ -5,6 +5,7 @@ node/npm-debug.log
 node/nohup.out
 node/routes/getOpenidConfig.json
 
-node/package-lock.json
-
 npm-debug.log
+
+Dockerfile
+docker-compose.yml
