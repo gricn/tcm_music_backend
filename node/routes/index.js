@@ -4,6 +4,7 @@ const getopenid = require('./getopenid')
 const register = require('./register')
 const test = require('./test')
 const isregistered = require('./isregistered')
+const getusergender = require('./getusergender')
 
 
 module.exports = app => {
@@ -12,5 +13,6 @@ module.exports = app => {
   app.use('/register',register)
   app.use('/test',test)
   app.use('/isregistered',isregistered)
+  app.use('/getusergender',getusergender)
   // etc..
 }
