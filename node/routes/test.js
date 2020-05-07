@@ -28,7 +28,17 @@ test.post('/', async (req, res) => {
                     [openid, testtimes, question_id, question_value])
             })
         })
-        console.log('服务器存储testtimes成功，值为：' + testtimes)
+
+        await db.query(
+            'insert into test(openid,yangxu_score,yinxu_score,\
+                qixu_score,tanshi_score,shire_score,xueyu_score,\
+                tebin_score,qiyu_score,pinghe_score ) \
+            values($1, $2, $3, $4,$5,$6,$7,$8,$9,$10)',
+            [openid, reqBody.convert[0], reqBody.convert[1],
+            reqBody.convert[2],reqBody.convert[3], reqBody.convert[4],
+            reqBody.convert[5], reqBody.convert[6], reqBody.convert[7], reqBody.convert[8]])
+
+
     } catch (e) {
         console.log(e)
     }

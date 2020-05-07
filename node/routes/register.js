@@ -13,8 +13,10 @@ register.post('/', async (req, res) => {
         if(openidnum == 0){
             await db.query('insert into userinfo(openid, gender,age,province_id)\
          values ($1,$2,$3,$4)',[reqBody.openid, reqBody.gender, reqBody.age, reqBody.location])
+         res.send(true)
+        } else{
+            res.send(false)
         }
-        res.send('receive register message successfully.')
         
     } catch (e) {
         console.log(e)

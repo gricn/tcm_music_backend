@@ -83,9 +83,17 @@
 ### test(table)
  create table test(
      no serial,
-     openid text primary key references userinfo(openid),
+     openid text,
      timestamp timestamp default current_timestamp,
-     score integer
+     yangxu_score real,
+	 yinxu_score real,
+	 qixu_score real,
+	 tanshi_score real,
+	 shire_score real,
+	 xueyu_score real,
+	 tebin_score real,
+	 qiyu_score real,
+	 pinghe_score real
  );
 
 
