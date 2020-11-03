@@ -144,6 +144,7 @@ create table musiclistenrecord(
 - [colorUI](https://github.com/weilanwl/ColorUI) - MIT
 - [weui-miniprogram](https://github.com/wechat-miniprogram/weui-miniprogram) - MIT
 - [china_regions](https://github.com/wecatch/china_regions) - Apache 2.0
+- [pm2](https://github.com/Unitech/pm2) - GNU-AGPL-3.0
 
 直接使用的代码包括
 - 省市三级联动: [如何实现一个自定义数据版省市区三级联动](https://developers.weixin.qq.com/community/develop/article/doc/0000643f674fa81a18a92b37455413)

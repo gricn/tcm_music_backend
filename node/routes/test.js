@@ -37,8 +37,6 @@ test.post('/', async (req, res) => {
             [openid, reqBody.convert[0], reqBody.convert[1],
             reqBody.convert[2],reqBody.convert[3], reqBody.convert[4],
             reqBody.convert[5], reqBody.convert[6], reqBody.convert[7], reqBody.convert[8]])
-
-
     } catch (e) {
         console.log(e)
     }
