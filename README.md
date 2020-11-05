@@ -9,7 +9,7 @@
 - [ ] 数据统计	（F2移动端数据可视化）
 
 
-## API 说明 （日后可能会将4000端口用子域名包装一下）
+## API 说明
 
 ### 调取五音音乐歌单
 - URL: `https://www.gricn.top:4000/public/[params].json`
