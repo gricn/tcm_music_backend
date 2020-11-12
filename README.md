@@ -67,7 +67,8 @@
 
 ### 用户注册
 - URL: `https://www.gricn.top:4000/register/[params]`
-- params类型： 微信小程序缓存中获取的openid
+- params类型： 微信小程序缓存中获取的openid发送到服务器数据库存储
+- 接收内容：openid, gender, age, location
 - 备注：POST方法
 
 ----

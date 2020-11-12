@@ -10,9 +10,9 @@ const getusergender = require('./getusergender')
 module.exports = app => {
   app.use('/api', api)
   app.use('/getopenid', getopenid)
-  app.use('/register',register)
-  app.use('/test',test)
-  app.use('/isregistered',isregistered)
-  app.use('/getusergender',getusergender)
+  app.use('/register', register)
+  app.use('/test', test)
+  app.use('/isregistered', isregistered)
+  app.use('/getusergender', getusergender)
   // etc..
 }

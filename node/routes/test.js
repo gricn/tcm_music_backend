@@ -3,7 +3,7 @@ const express = require('express')
 const test = express.Router()
 const db = require('../db')
 
-test.post('/', async (req, res) => {
+test.get('/', async (req, res) => {
     try {
         res.send("Server has received test results. Thanks for your paticipating.")
         var reqBody = req.body
